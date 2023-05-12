@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card
+        {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+
+        }
+        .top-btn{
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            height: 50px;
+            width: 550px;
+            transform: translate(-50%,-50%);
+        }
+        .bottom-btn{
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            height: 50px;
+            width: 550px;
+            transform: translate(-50%,50%);
+        }
+        .left-btn{
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            height: 550px;
+            width: 50px;
+            transform: translate(-50%,-50%);
+        }
+        .right-btn{
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            height: 550px;
+            width: 50px;
+            transform: translate(50%,-50%);
+        }
+        .small-card{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transform: translate(-50%,-50%);
+        }
+        </style>
+
+
+
+</head>
+<body>
+    <div class="card">
+        <button class="top-btn" id="top" disabled="true">Up</button>
+        <button class="bottom-btn" id="bottom">bottom</button>
+        <button class="left-btn" id="left" disabled="true">left</button>
+        <button class="right-btn" id="right">right</button>
+        <div class="small-card" id="sm"></div>
+        <script >
+            var btn1 = document.getElementById("top")
+            var btn2 = document.getElementById("bottom")
+            var btn3 = document.getElementById("left")
+            var btn4 = document.getElementById("right")
+            var smallcard = document.getElementById("sm")
+            btn1.onclick = function(){
+                var currentTop = parseInt(smallcard.style.top, 10) || 0;
+                smallcard.style.top = (currentTop - 50) + "px";
+                if(currentTop-50 ==0)
+                {
+                    btn1.disabled = true;
+                }
+                else
+                {
+                    btn2.disabled = false;
+                }
+
+            }
+            btn2.onclick = function(){
+                var currentTop = parseInt(smallcard.style.top, 10) || 0;
+                smallcard.style.top = (currentTop + 50) + "px";
+                if(currentTop+50 == 500)
+                {
+                    btn2.disabled = true;
+                }
+                else
+                {
+                    btn1.disabled = false;
+                }
+            }
+            btn3.onclick = function(){
+                var currentleft = parseInt(smallcard.style.left, 10) || 0;
+                smallcard.style.left = (currentleft - 50) + "px";
+                if(currentleft-50==0)
+                {
+                    btn3.disabled = true;
+                }
+                else if(currentleft==500)
+                {
+                    btn4.disabled = false;
+                    if(currentTop==500)
+                    {
+                        btn2.disabled = true;
+                    }
+                }
+                else
+                {
+                    btn2.disabled = false;
+                }
+            }
+            btn4.onclick = function(){
+                var currentleft = parseInt(smallcard.style.left, 10) || 0;
+                smallcard.style.left = (currentleft + 50) + "px";
+                if(currentleft+50 == 500)
+                {
+                    btn4.disabled = true;
+                }
+                else if(currentleft==0)
+                {
+                    btn3.disabled = false;
+                }
+                else
+                {
+                    btn3.disabled = false;
+                }
+            }
+        </script>
+        
+    </div>
+</body>
+</html>
